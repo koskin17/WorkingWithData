@@ -10,25 +10,41 @@
 # list_from_string_01 = string_01.split()
 # print(f"Количество слов во все строке (через преобразование строки в список и подсчёт длины списка): {len(list_from_string_01)}")
 
+# import re
+
 # def words_with_symbol(symbol, string):
+#     clear_string = re.sub(r'[^\w\s]', '', string) # Очистка строки от всех символов, которые не буквы
 #     count = 0
-#     for word in string.split():
+#     for word in clear_string.split(' '):
+#         word = word.lower()
 #         if word.startswith(symbol):
 #             count += 1
+#             print(word)        
+        
 #     return count
 
 # letter = 'w'
 # print(f"Количество слов, начинающихся с буквы {letter}: {words_with_symbol(letter, string_01)}")
 
+
 # Задача 2
 # import random
 
+# Вариант 1
+# number = ''
+# while '3' not in number:
+#     number = ''.join([str(random.randint(0, 9)) for i in range(6)]) # Пока 3 не будет в числе цикл будет формировать число из 6 знаков
 
+# print(number)
+
+# Вариант 2 (нормальный)
 # random_number = list(''.join(random.choices('0124567890', k=5)) + '3')
 # random.shuffle(random_number)
-# print(''.join(random_number))
+# print(''.join(random_number), type(''.join(random_number)))
+
 
 # Задача 3
+# Вариант 1
 # list_01 = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 14, 46, 273, 22, 99, 15, 1000]
 # sum_of_elements_1 = 0
 # sum_of_elements_2 = 0
@@ -41,6 +57,10 @@
         
 # print(sum_of_elements_1)
 # print(sum_of_elements_2)
+
+# Вариант 2: с list comprehention
+# print(sum([x for x in list_01 if 10 < x < 100 or 200 < x < 500]))
+
 
 # Задача 4
 # students = [
@@ -81,12 +101,24 @@ matrix = [
     [5,7,3,4,0] 
 ]
 
+# Решение с Numpy
+# import numpy
+
+# print(numpy.sum(matrix)) # Numpy позволяет в одну строку сразу посчитать сумму всей матрицы
+
 total_sum = 0
 for element in matrix:
     total_sum += sum(element)
     
 print(total_sum)
 
+# Вычисление максимума из сумм списков в матрице
+# В Numpy у sum() есть необязательный аргумент - ось, которая сообщает по какой оси в матрице выполнять суммирование. Если передать 0, то суммирование будет происходить по столбцам матрицы, т.е. как будто списки написаны друг над другом и будут суммироваться цифры из образовавшихся столбцов
+import numpy
+
+print(max(numpy.sum(matrix, axis=0)))
+
+# В этом решении я суммировал цифры в каждом списке
 max = sum(matrix[0])
 for element in matrix:
     if max < sum(element):
