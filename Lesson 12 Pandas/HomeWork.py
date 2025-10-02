@@ -22,7 +22,7 @@ print(filtered_data)
 filtered_data = data.query("country in ['Latvia', 'Lithuania', 'Estonia'] and category in [4, 12, 21] and (year >= 2005 and year <= 2010) and quantity > 0")['quantity'].sum()
 print(filtered_data)
 
-# Фильтрация и подсчёт суммы потребления в команде одной строкой и через указание столбцов
+# Фильтрация и подсчёт суммы потребления в одной команде и через указание столбцов
 print(data[(data['country'].isin(['Latvia', 'Lithuania', 'Estonia'])) & (data['category'].isin([4, 12, 21])) & (data['year'] >= 2005) & (data['year'] <= 2010) & (data['quantity'] > 0)]['quantity'].sum())
 
 # Задание 3: Выберите страницу любого сайта с табличными данными. Импортируйте таблицы в pandas dataframe.
